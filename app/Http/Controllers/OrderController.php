@@ -8,6 +8,11 @@ use App\Http\Requests;
 
 class OrderController extends Controller
 {
+    public function create()
+    {
+        return view('welcome');
+    }
+
     public function store(Request $request)
     {
         $this->validate($request, [
