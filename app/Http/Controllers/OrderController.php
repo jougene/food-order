@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App;
 
 class OrderController extends Controller
 {
+    public function index()
+    {
+        return view('orders');
+    }
+
     public function create()
     {
         return view('welcome');
@@ -19,6 +25,13 @@ class OrderController extends Controller
             'name' => 'required|max:255',
             'address' => 'required|max:255'
         ]);
-        // The order is valid, store in database...
+
+        $order = new App\Order;
+
+        $order->username = $request->name;
+        $order->address = $request->address;
+        $order->phone = $request->phone;
+
+        $order->save();
     }
 }

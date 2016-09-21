@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', 'OrderController@create');
+Route::get('foodorder', 'OrderController@index');
+Route::get('foodorder/create', 'OrderController@create');
 
 Route::post('foodorder', 'OrderController@store');
