@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Order;
 use App\Http\Requests;
-use App;
+use DB;
 
 class OrderController extends Controller
 {
     public function index()
     {
-        return view('orders');
+        $orders = DB::table('orders')->get();
+        return view('orders', ['orders' => $orders]);
     }
 
     public function create()
@@ -26,7 +28,7 @@ class OrderController extends Controller
             'address' => 'required|max:255'
         ]);
 
-        $order = new App\Order;
+        $order = new Order;
 
         $order->username = $request->name;
         $order->address = $request->address;

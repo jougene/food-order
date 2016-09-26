@@ -14,6 +14,11 @@
     </head>
     <body>
         <div class="container-fluid ">
+            <ul>
+                @foreach ($orders as $order)
+                    <li>{{ $order->username }} - {{ $order->address }} - {{ $order->phone }}</li>
+                @endforeach
+            </ul>
             {{-- TO DO SHOW ORDERS --}}
         </div>
     </body>

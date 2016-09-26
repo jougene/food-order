@@ -21,9 +21,11 @@
         - php7.0-mbstring
         - php7.0-pgsql
         - php7.0-xml
+        - php7.0-zip
+      tags: packages
 
     - name: create /var/www/ directory
-      file: dest=/var/www/ state=directory owner=www-data group=www-data mode=0700
+      file: dest=/var/www/ state=directory owner=vagrant group=vagrant mode=0755
 
     - name: download composer
       get_url:

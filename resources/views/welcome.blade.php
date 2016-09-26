@@ -7,6 +7,7 @@
 
         <title>Food order</title>
 
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" charset="utf-8"></script>
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
         <!-- Fonts -->
@@ -16,7 +17,7 @@
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="/foodorder" method="post">
+                    <form id="order" action="/foodorder" method="post">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="name">Имя</label>
@@ -47,4 +48,28 @@
             </div>
         </div>
     </body>
+    <script type="text/javascript">
+        $('#order').on('submit', function (e) {
+            e.preventDefault();
+            var _this = $(this);
+            var token = $('input[name=_token]').val();
+            console.log(_this.serialize());
+            $.ajax({
+                url: _this.attr('action'),
+                method: 'post',
+                headers: {
+                    'X-CSRF-TOKEN': token
+                },
+                data:  _this.serialize(),
+                dataType: 'json',
+                success: function (json) {
+                    console.log('Thanks');
+                },
+                error: function (json) {
+                    console.log(json);
+                }
+            });
+        })
+    </script>
+
 </html>
