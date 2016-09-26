@@ -13,13 +13,25 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div class="container-fluid ">
-            <ul>
-                @foreach ($orders as $order)
-                    <li>{{ $order->username }} - {{ $order->address }} - {{ $order->phone }}</li>
-                @endforeach
-            </ul>
-            {{-- TO DO SHOW ORDERS --}}
+        <div class="container ">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Имя</th>
+                        <th>Адрес</th>
+                        <th>Телефон</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($orders as $order)
+                        <tr>
+                            <td>{{ $order->username }}</td>
+                            <td>{{ $order->address }}</td>
+                            <td>{{ $order->phone }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </body>
 </html>

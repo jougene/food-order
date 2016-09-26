@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Order;
+use App\Good;
 use App\Http\Requests;
 use DB;
 
@@ -18,16 +19,12 @@ class OrderController extends Controller
 
     public function create()
     {
-        return view('welcome');
+        $goods = Good::all();
+        return view('welcome', ['goods' => $goods]);
     }
 
-    public function store(Request $request)
+    public function store(Requests\StoreOrder $request)
     {
-        $this->validate($request, [
-            'name' => 'required|max:255',
-            'address' => 'required|max:255'
-        ]);
-
         $order = new Order;
 
         $order->username = $request->name;
@@ -35,5 +32,11 @@ class OrderController extends Controller
         $order->phone = $request->phone;
 
         $order->save();
+
+        $response = array(
+            'status' => 'success',
+            'msg' => 'Order created successfully',
+        );
+        return \Response::json($response);
     }
 }

@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/', function () {
+    return redirect('foodorder/create');
+});
+
 Route::get('foodorder', 'OrderController@index');
 Route::get('foodorder/create', 'OrderController@create');
 

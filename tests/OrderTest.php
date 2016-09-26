@@ -13,7 +13,9 @@ class OrderTest extends TestCase
      */
     public function testOrderForm()
     {
-        $this->post('/foodorder')
-            ->type('Eugene');
+        $this->post('/foodorder', [
+            'name' => 'Helena',
+            'address' => 'Dowming Street, 12'
+        ]);
     }
 }

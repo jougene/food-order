@@ -14,9 +14,17 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div class="container-fluid ">
-            <div class="row">
-                <div class="col-md-12">
+        <div class="container">
+            <div class="col-md-6">
+                <div class="row">
+                    <ul>
+                        @foreach ($goods as $item)
+                            <li>{{ $item->name }} | {{ $item->category }}  </li>
+                        @endforeach
+                    </ul>
+                    {{-- TODO stylish goods output  --}}
+                </div>
+                <div class="row">
                     <form id="order" action="/foodorder" method="post">
                         {{ csrf_field() }}
                         <div class="form-group">
@@ -31,20 +39,13 @@
                             <label for="phone">Телефон</label>
                             <input type="text" name="phone" class="form-control" id="phone" placeholder="Телефон">
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-lg btn-primary">Заказать</button>
                     </form>
                 </div>
-            </div>
-            <div class="row">
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                <div class="row">
+                    <div class="alert alert-danger" style="display: none">Заполните все необходимые поля</div>
+                    <div class="alert alert-success" style="display: none">Ваша заявка принята</div>
+                </div>
             </div>
         </div>
     </body>
@@ -53,7 +54,8 @@
             e.preventDefault();
             var _this = $(this);
             var token = $('input[name=_token]').val();
-            console.log(_this.serialize());
+            $('.has-error').removeClass('has-error');
+            $('.alert').hide();
             $.ajax({
                 url: _this.attr('action'),
                 method: 'post',
@@ -62,11 +64,17 @@
                 },
                 data:  _this.serialize(),
                 dataType: 'json',
-                success: function (json) {
-                    console.log('Thanks');
+                success: function (json, textStatus) {
+                    console.log(json, textStatus);
+                    $('.alert.alert-success').show();
+                    _this.trigger('reset');
                 },
-                error: function (json) {
-                    console.log(json);
+                error: function (json, textStatus) {
+                    console.log(textStatus);
+                    $.each(json.responseJSON, function(key, value) {
+                        $('[name=' + key + ']').parent().addClass('has-error');
+                    });
+                    $('.alert.alert-danger').show();
                 }
             });
         })
