@@ -1,0 +1,20 @@
+.good{
+    padding:0;
+    list-style:none;
+}
+.good-item{
+    float:left;
+    width:120px;
+    height:100px;
+    margin-bottom:10px;
+    margin-right:10px;
+    border-radius:10px;
+    background:#eee;
+    border:1px solid #ddd;
+    cursor:pointer;
+    text-align:center;
+    line-height:50px;
+    font-size:1.1em;
+    font-family:"Tahoma", sans-serif;
+    box-shadow:0 2px 4px rgba(0, 0, 0, 0.1);
+}

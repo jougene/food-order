@@ -10,41 +10,64 @@
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" charset="utf-8"></script>
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css" >
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div class="container">
-            <div class="col-md-6">
-                <div class="row">
-                    <ul>
-                        @foreach ($goods as $item)
-                            <li>{{ $item->name }} | {{ $item->category }}  </li>
-                        @endforeach
-                    </ul>
-                    {{-- TODO stylish goods output  --}}
+            <div class="row">
+                {{-- {{ dd($goods) }} --}}
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Выберите товары:</div>
+                    <div class="panel-body">
+                        <ul class="good">
+                            @foreach ($goods as $item)
+                                <li class="good-item">
+                                    <a href="#">
+                                        {{-- {{ $item->name }} --}}
+                                        <img src="{{ $item->image }}" width="100" height="100" alt="" />
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-                <div class="row">
-                    <form id="order" action="/foodorder" method="post">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label for="name">Имя</label>
-                            <input type="text" name="name" class="form-control" id="name" placeholder="Имя">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Адрес</label>
-                            <input type="text" name="address" class="form-control" id="address" placeholder="Адрес">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Телефон</label>
-                            <input type="text" name="phone" class="form-control" id="phone" placeholder="Телефон">
-                        </div>
-                        <button type="submit" class="btn btn-lg btn-primary">Заказать</button>
-                    </form>
+            </div>
+
+            <div class="row">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Вы заказали:</div>
+                    <div class="panel-body">
+                        <ul class="good">
+                        </ul>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="alert alert-danger" style="display: none">Заполните все необходимые поля</div>
-                    <div class="alert alert-success" style="display: none">Ваша заявка принята</div>
+            </div>
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Заполните форму ниже для заказа выбранных товаров:</div>
+                    <div class="panel-body">
+                        <form id="order" action="/foodorder" method="post">
+                            {{ csrf_field() }}
+
+                            <div class="form-group">
+                                <label for="name">Имя</label>
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Имя">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Адрес</label>
+                                <input type="text" name="address" class="form-control" id="address" placeholder="Адрес">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Телефон</label>
+                                <input type="text" name="phone" class="form-control" id="phone" placeholder="Телефон">
+                            </div>
+                            <button type="submit" class="btn btn-lg btn-primary" style="margin-bottom: 10px">Заказать</button>
+                        </form>
+                        <div class="alert alert-danger" style="display: none">Заполните все необходимые поля</div>
+                        <div class="alert alert-success" style="display: none">Ваша заявка принята</div>
+                    </div>
                 </div>
             </div>
         </div>

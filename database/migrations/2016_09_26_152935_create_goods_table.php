@@ -16,8 +16,10 @@ class CreateGoodsTable extends Migration
         Schema::create('goods', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('category');
+            $table->string('description');
             $table->string('image')->nullable();
+            $table->string('category');
+            $table->integer('price');
         });
     }
 

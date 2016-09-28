@@ -12,9 +12,20 @@ class GoodsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('goods')->insert([
-            'name' => 'Margarita',
-            'category' => 'Pizza'
-        ]);
+        $faker = Faker\Factory::create();
+
+        $limit = 12;
+
+        DB::table('goods')->truncate();
+
+        for ($i = 0; $i < $limit; $i++) {
+            DB::table('goods')->insert([
+                'name'          => $faker->name,
+                'description'   => $faker->text($maxNbChars = 100),
+                'image'         => $faker->imageUrl($width = 150, $height = 150, 'food'),
+                'category'      => $faker->randomElement(['Pizza', 'Drink', 'Rolls', 'Sushi', 'Desserts', 'Hotplates']),
+                'price'         => $faker->numberBetween(100, 1000)
+            ]);
+        }
     }
 }
