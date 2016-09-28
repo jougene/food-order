@@ -65,12 +65,12 @@
                 data:  _this.serialize(),
                 dataType: 'json',
                 success: function (json, textStatus) {
-                    console.log(json, textStatus);
+                    // console.log(json, textStatus);
                     $('.alert.alert-success').show();
                     _this.trigger('reset');
                 },
                 error: function (json, textStatus) {
-                    console.log(textStatus);
+                    // console.log(json);
                     $.each(json.responseJSON, function(key, value) {
                         $('[name=' + key + ']').parent().addClass('has-error');
                     });
