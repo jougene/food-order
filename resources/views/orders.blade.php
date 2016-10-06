@@ -17,6 +17,7 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Имя</th>
                         <th>Адрес</th>
                         <th>Телефон</th>
@@ -25,6 +26,7 @@
                 <tbody>
                     @foreach ($orders as $order)
                         <tr>
+                            <td>{{ $order->id }}</td>
                             <td>{{ $order->username }}</td>
                             <td>{{ $order->address }}</td>
                             <td>{{ $order->phone }}</td>

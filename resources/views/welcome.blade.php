@@ -25,7 +25,7 @@
                             @foreach ($goods as $item)
                                 <li class="good-item">
                                     <a href="#">
-                                        {{-- {{ $item->name }} --}}
+                                        {{ $item->id }}
                                         <img src="{{ $item->image }}" width="100" height="100" alt="" />
                                     </a>
                                 </li>
