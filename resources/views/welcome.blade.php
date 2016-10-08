@@ -17,8 +17,7 @@
     <body>
         <div class="container">
             <div class="row">
-                {{-- {{ dd($goods) }} --}}
-                <div class="panel panel-primary">
+                <div id="choose-goods" class="panel panel-primary">
                     <div class="panel-heading">Выберите товары:</div>
                     <div class="panel-body">
                         <ul class="good">
@@ -32,15 +31,21 @@
                             @endforeach
                         </ul>
                     </div>
+                    <div id="count-popup" class="count-popup" style="display: none; position: absolute;">
+                        <button class="plus-minus-button" type="button" name="plus"> + </button>
+                        <button class="plus-minus-button" type="button" name="minus"> - </button>
+                        <button class="btn btn-info" type="submit" name="add" style="margin: 0px 5px">Добавить</button>
+                    </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="panel panel-info">
+                <div id="ordered-goods" class="panel panel-info">
                     <div class="panel-heading">Вы заказали:</div>
                     <div class="panel-body">
                         <ul class="good">
                         </ul>
+                        <button id="reset" type="reset" class="btn btn-info" name="reset">Очистить</button>
                     </div>
                 </div>
             </div>
@@ -102,5 +107,6 @@
             });
         })
     </script>
+    <script src="/js/jquery.additems.js" charset="utf-8"></script>
 
 </html>
