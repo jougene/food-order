@@ -21,6 +21,7 @@
                     <div class="panel-heading">Выберите товары:</div>
                     <div class="panel-body">
                         <ul class="good">
+                            dd($goods);
                             @foreach ($goods as $item)
                                 <li class="good-item">
                                     <a href="#">
