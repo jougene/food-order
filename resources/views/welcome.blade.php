@@ -12,7 +12,7 @@
         <link href="/css/app.css" rel="stylesheet">
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css" >
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <!-- <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css"> -->
     </head>
     <body>
         <div class="container">
@@ -21,20 +21,19 @@
                     <div class="panel-heading">Выберите товары:</div>
                     <div class="panel-body">
                         <ul class="good">
-                            dd($goods);
                             @foreach ($goods as $item)
                                 <li class="good-item">
-                                    <a href="#">
+                                    <a href="#" rel="{{ $item->id }}">
                                         {{ $item->id }}
-                                        <img src="{{ $item->image }}" width="100" height="100" alt="" />
+                                        <!-- <img src="{{ $item->image }}" width="100" height="100" alt="" /> -->
                                     </a>
                                 </li>
                             @endforeach
                         </ul>
                     </div>
                     <div id="count-popup" class="count-popup" style="display: none; position: absolute;">
-                        <button class="plus-minus-button" type="button" name="plus"> + </button>
                         <button class="plus-minus-button" type="button" name="minus"> - </button>
+                        <button class="plus-minus-button" type="button" name="plus"> + </button>
                         <button class="btn btn-info" type="submit" name="add" style="margin: 0px 5px">Добавить</button>
                     </div>
                 </div>
@@ -56,7 +55,7 @@
                     <div class="panel-body">
                         <form id="order" action="/foodorder" method="post">
                             {{ csrf_field() }}
-
+                            <input type="hidden" name="goods" value="">
                             <div class="form-group">
                                 <label for="name">Имя</label>
                                 <input type="text" name="name" class="form-control" id="name" placeholder="Имя">
