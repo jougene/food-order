@@ -40,5 +40,4 @@
         /* Act on the event */
         panelOrders.find('ul.good').empty();
     });
-
 })();

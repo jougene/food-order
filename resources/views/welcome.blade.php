@@ -55,7 +55,7 @@
                     <div class="panel-body">
                         <form id="order" action="/foodorder" method="post">
                             {{ csrf_field() }}
-                            <input type="hidden" name="goods" value="">
+                            <input type="hidden" name="goods" value="1: 1, 2: 1, 4: 2">
                             <div class="form-group">
                                 <label for="name">Имя</label>
                                 <input type="text" name="name" class="form-control" id="name" placeholder="Имя">

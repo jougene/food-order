@@ -21,6 +21,7 @@
                         <th>Имя</th>
                         <th>Адрес</th>
                         <th>Телефон</th>
+                        <th>Товары</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,6 +31,11 @@
                             <td>{{ $order->username }}</td>
                             <td>{{ $order->address }}</td>
                             <td>{{ $order->phone }}</td>
+                            <td>
+                                @foreach($order->orderedGood as $item)
+                                    {{ dd($item->good()) }}
+                                @endforeach
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

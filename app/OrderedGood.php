@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrderedGoods extends Model
+class OrderedGood extends Model
 {
     /**
      *
@@ -12,8 +12,17 @@ class OrderedGoods extends Model
      *
      **/
 
+    public $timestamps = false;
+	
+	public function order()
+    {
+        return $this->belongsTo('App\Order');
+    }
+
     public function good()
     {
         return $this->hasOne('App\Good');
     }
+
+
 }
