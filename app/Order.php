@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\OrderedGood;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
 
-    public function orderedGood()
+    public function goods()
     {
-        return $this->hasMany('App\OrderedGood');
+    	return $this->belongsToMany('App\Good', 'ordered_goods')->withPivot('count');
     }
 }

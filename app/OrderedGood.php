@@ -21,8 +21,6 @@ class OrderedGood extends Model
 
     public function good()
     {
-        return $this->hasOne('App\Good');
+        return $this->belongsTo('App\Good');
     }
-
-
 }

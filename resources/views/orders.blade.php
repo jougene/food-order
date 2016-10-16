@@ -32,8 +32,11 @@
                             <td>{{ $order->address }}</td>
                             <td>{{ $order->phone }}</td>
                             <td>
-                                @foreach($order->orderedGood as $item)
-                                    {{ dd($item->good()) }}
+                                @foreach($order->goods as $item)
+                                    {{-- {{ $item->pivot) }} --}}
+
+
+                                    <li>Название - {{ $item->name }} | Кол-во - {{ $item->pivot->count }} | {{ $item->price * $item->pivot->count}}р.</li>
                                 @endforeach
                             </td>
                         </tr>

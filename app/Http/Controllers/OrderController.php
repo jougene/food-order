@@ -14,8 +14,8 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('orderedGood')->get();
-        return view('orders', ['orders' => $orders]);
+        $orders = Order::with('goods')->get();
+        return view('orders', ['orders' => $orders ]);
     }
 
     public function create()
@@ -29,7 +29,6 @@ class OrderController extends Controller
         $goods = explode(", ", $request->goods);
 
         $order = new Order;
-
         $order->username = $request->name;
         $order->address = $request->address;
         $order->phone = $request->phone;
@@ -37,12 +36,9 @@ class OrderController extends Controller
 
         foreach ($goods as $key => $value) {
             $items = explode(": ", $value);
-            // dd("id - $items[0]", "count - $items[1]");
-            $orderedGood = new OrderedGood;
-            $orderedGood->good_id = $items[0];
-            $orderedGood->count = $items[1];
-            // dd($order);
-            $order->orderedGood()->save($orderedGood);
+            // item0 - id, item1 - count
+            // REFACTOR this
+            $order->goods()->attach($items[0], ['count' => $items[1]]);
         }
 
         $response = array(
