@@ -7,28 +7,19 @@
     panelGoods.find('li.good-item').each(function(index, el) {
         $(el).on('click', function(event) {
             event.preventDefault();
-            /* Act on the event */
-            var item = $(this).clone();
+            var goodItem = {};
+
+            // countPopup.offset($(this).offset()).show();
             
-            goods.push($(this).find('a').attr('rel'));
-            $('[name=goods]').val(goods);
+            goodItem.id = $(this).find('a').attr('rel');
+            goodItem.count = 1;
+            goods.push(goodItem);
+            $('[name=goods]').val(JSON.stringify(goods));
+            panelOrders.find('ul.good').html(JSON.stringify(goods));
 
-            countPopup.offset($(this).offset());
-            countPopup.show();
-            
-            countPopup.find('[name=plus]').on('click', function () {
-                counter++;      
-                $(this).off('click');
-            });
-
-            countPopup.find('[name=minus]').on('click', function () {
-                counter--;
-                $(this).off('click');
-            });
-
-            countPopup.find('[type=submit]').on('click', function () {
-                panelOrders.find('ul.good').append(item);
-            });
+            // countPopup.find('[type=submit]').on('click', function () {
+            //     console.log(goods);
+            // });
         });
     });
 
@@ -37,7 +28,7 @@
 
         goods = [];
         $('[name=goods]').val(goods);
-        /* Act on the event */
+        
         panelOrders.find('ul.good').empty();
     });
 })();

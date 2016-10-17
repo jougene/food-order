@@ -26,7 +26,6 @@ class OrderController extends Controller
 
     public function store(Requests\StoreOrder $request)
     {
-        $goods = explode(", ", $request->goods);
 
         $order = new Order;
         $order->username = $request->name;
@@ -34,11 +33,9 @@ class OrderController extends Controller
         $order->phone = $request->phone;
         $order->save();
 
-        foreach ($goods as $key => $value) {
-            $items = explode(": ", $value);
-            // item0 - id, item1 - count
-            // REFACTOR this
-            $order->goods()->attach($items[0], ['count' => $items[1]]);
+        $goods = json_decode($request->goods);
+        foreach ($goods as $goodItem) {
+            $order->goods()->attach($goodItem->id, ['count' => $goodItem->count]);
         }
 
         $response = array(

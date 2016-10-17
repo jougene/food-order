@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return redirect('foodorder/create');
+    return redirect('orders/create');
 });
 
-Route::get('foodorder', 'OrderController@index');
-Route::get('foodorder/create', 'OrderController@create');
+Route::get('orders', 'OrderController@index');
+Route::get('orders/create', 'OrderController@create');
 
-Route::post('foodorder', 'OrderController@store');
+Route::post('orders', 'OrderController@store');

@@ -8,6 +8,7 @@
         <title>Food order</title>
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" charset="utf-8"></script>
+        <script src="/js/app.js" charset="utf-8"></script>
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet" type="text/css" >
@@ -32,8 +33,8 @@
                         </ul>
                     </div>
                     <div id="count-popup" class="count-popup" style="display: none; position: absolute;">
-                        <button class="plus-minus-button" type="button" name="minus"> - </button>
-                        <button class="plus-minus-button" type="button" name="plus"> + </button>
+                        {{-- <button class="plus-minus-button" type="button" name="minus"> - </button> --}}
+                        {{-- <button class="plus-minus-button" type="button" name="plus"> + </button> --}}
                         <button class="btn btn-info" type="submit" name="add" style="margin: 0px 5px">Добавить</button>
                     </div>
                 </div>
@@ -53,9 +54,9 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">Заполните форму ниже для заказа выбранных товаров:</div>
                     <div class="panel-body">
-                        <form id="order" action="/foodorder" method="post">
+                        <form id="order" action="/orders" method="post">
                             {{ csrf_field() }}
-                            <input type="hidden" name="goods" value="1: 1, 2: 1, 4: 2">
+                            <input type="hidden" name="goods">
                             <div class="form-group">
                                 <label for="name">Имя</label>
                                 <input type="text" name="name" class="form-control" id="name" placeholder="Имя">
@@ -95,6 +96,7 @@
                 success: function (json, textStatus) {
                     // console.log(json, textStatus);
                     $('.alert.alert-success').show();
+                    $('[name=goods]').val('');
                     _this.trigger('reset');
                 },
                 error: function (json, textStatus) {
